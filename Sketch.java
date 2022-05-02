@@ -16,21 +16,96 @@ public class Sketch extends PApplet {
    * values here i.e background, stroke, fill etc.
    */
   public void setup() {
-    background(210, 255, 173);
+    background(0, 0, 0);
   }
+
+  float ellipseX = 200;
+  float ellipseY = 200;
+
+  boolean upPressed = false;
+  boolean downPressed = false;
+  boolean leftPressed = false;
+  boolean rightPressed = false;  
+  boolean shiftPressed = false;
 
   /**
    * Called repeatedly, anything drawn to the screen goes here
    */
   public void draw() {
-	  
-	// sample code, delete this stuff
-    stroke(128);
-    line(150, 25, 270, 350);  
 
-    stroke(255);
-    line(50, 125, 70, 50);  
+    background(0, 0, 0);
+    
+    if(mousePressed){
+      fill(255, 255, 51);
+      ellipse(mouseX, mouseY, 50, 50);
+    }
+
+    ellipse(ellipseX, ellipseY, 50, 50);
+    
+      if (upPressed){
+        ellipseY -= 1;
+      }
+      if (rightPressed){
+        ellipseX += 1;
+      }
+      if (downPressed){
+        ellipseY += 1;
+      }
+      if (leftPressed){
+        ellipseX -= 1;
+      }
+      if (upPressed && shiftPressed) {
+        ellipseY -= 5;
+      }
+      if (rightPressed && shiftPressed) {
+        ellipseX += 5;
+      }
+      if (downPressed && shiftPressed) {
+        ellipseY += 5;
+      }
+      if (leftPressed && shiftPressed) {
+        ellipseX -= 5;
+      }
+
+
+  }
+  public void keyPressed() {
+    if (key == 'w') {
+      upPressed = true;
+    }
+    else if (key == 's') {
+      downPressed = true;
+    }
+    else if (key == 'a') {
+      leftPressed = true;
+    }
+    else if (key == 'd') {
+      rightPressed = true;
+    }
+    else if(keyCode == SHIFT) {
+      shiftPressed = true;
+    }
   }
   
-  // define other methods down here.
+  public void keyReleased() {
+    if (key == 'w') {
+      upPressed = false;
+    }
+    else if (key == 's') {
+      downPressed = false;
+    }
+    else if (key == 'a') {
+      leftPressed = false;
+    }
+    else if (key == 'd') {
+      rightPressed = false;
+    }
+    else if(keyCode == SHIFT) {
+      shiftPressed = false;
+    }
+  }
+
+  public void mouseReleased() {
+    fill(255, 255, 255);
+  }
 }
